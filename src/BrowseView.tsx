@@ -58,7 +58,7 @@ export default class BrowseView extends React.Component {
           <FormInput ref={(urlBar) => { this.urlBar = urlBar; }} className={s.addressBar} value={this.webView.currentUrl} readOnly onChange={(newValue: string) => { console.log(newValue); }}></FormInput>
         </MainPage.Header>
         <MainPage.Body>
-          <Webview autoFocus={true} nodeintegration ref={(webView) => { this.webView.ref = webView; }} src={"https://www.nexusmods.com/" + this.getGame()} className={s.iframeStyle}></Webview>
+          <Webview autoFocus={true} ref={(webView) => { this.webView.ref = webView; }} src={"https://www.nexusmods.com/" + this.getGame()} className={s.iframeStyle}></Webview>
           </MainPage.Body>
         </MainPage>
     );
