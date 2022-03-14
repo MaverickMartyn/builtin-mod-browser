@@ -4,6 +4,7 @@ import * as s from './styles.css';
 const { ListGroup, ListGroupItem, Panel, Button } = require('react-bootstrap');
 import React = require("react");
 import { IProps } from 'vortex-api/lib/controls/FormInput';
+import { util } from "vortex-api";
 
 const iframeStyle = { width: "100%", height: "100%" };
 const addressBarStyle = {display: "flex"};
@@ -27,7 +28,9 @@ export default class BrowseView extends React.Component {
     const state = api.store.getState();
     const gameId = state.persistent.profiles[state.settings.profiles.activeProfileId].gameId;
     console.log(gameId);
-    return gameId;
+    const nexusPage = util.nexusGameId(undefined, gameId);
+
+    return nexusPage;
   }
 
   render() {
