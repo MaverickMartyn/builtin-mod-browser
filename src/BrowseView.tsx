@@ -6,8 +6,9 @@ import React = require("react");
 import { IProps } from 'vortex-api/lib/controls/FormInput';
 import { util } from "vortex-api";
 
+
 const iframeStyle = { width: "100%", height: "100%" };
-const addressBarStyle = {display: "flex"};
+const addressBarStyle = { display: "flex" };
 
 class Props {
   api: types.IExtensionApi;
@@ -27,10 +28,22 @@ export default class BrowseView extends React.Component {
     const api = (this.props as Props).api;
     const state = api.store.getState();
     const gameId = state.persistent.profiles[state.settings.profiles.activeProfileId].gameId;
-    console.log(gameId);
+    //console.log(gameId);
     const nexusPage = util.nexusGameId(undefined, gameId);
 
     return nexusPage;
+  }
+
+  outsideSitesNotAllowedDialog() {
+    const api = (this.props as Props).api;
+    api.showDialog("error",
+      "Outside sites not allowed",
+      {
+        md: "I'm sorry, but for security reasons you cannot browse outside Nexusmods sites",
+
+      },
+      [{ label: "Ok, I understand" }],
+      );
   }
 
   render() {
@@ -62,19 +75,28 @@ export default class BrowseView extends React.Component {
         </MainPage.Header>
         <MainPage.Body>
           <Webview autoFocus={true} ref={(webView) => { this.webView.ref = webView; }} src={"https://www.nexusmods.com/" + this.getGame()} className={s.iframeStyle}></Webview>
-          </MainPage.Body>
-        </MainPage>
+        </MainPage.Body>
+      </MainPage>
     );
   }
 
   componentDidMount() {
-    const webview : HTMLWebViewElement = document.querySelector('webview')
+    const webview: HTMLWebViewElement = document.querySelector('webview')
 
     webview.addEventListener('dom-ready', () => {
-      console.log('dom-ready')
-      console.log(this.webView.ref.mNode.src)
-      this.webView.currentUrl = this.webView.ref.mNode.src
-      this.forceUpdate();
+      //console.log('dom-ready')
+      console.log(this.webView.ref.mNode.src);
+      if ((this.webView.ref.mNode.src).startsWith("https://www.nexusmods.com/")) {
+        this.webView.currentUrl = this.webView.ref.mNode.src;
+      }
+      else {
+        console.log("Attempted to leave Nexus sites");
+
+        this.webView.ref.mNode.goBack();
+        this.outsideSitesNotAllowedDialog();
+      }
+     
+      //this.forceUpdate();
     })
   }
 }
