@@ -1,6 +1,6 @@
 {
   "name": "builtin-mod-browser",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Adds a \"Browse\" section containing an embedded Nexus Mods browser.",
   "main": "./out/index.js",
   "repository": "https://github.com/MaverickMartyn/builtin-mod-browser",

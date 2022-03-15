@@ -86,7 +86,7 @@ export default class BrowseView extends React.Component {
     webview.addEventListener('dom-ready', () => {
       //console.log('dom-ready')
       console.log(this.webView.ref.mNode.src);
-      if ((this.webView.ref.mNode.src).startsWith("https://www.nexusmods.com/")) {
+      if ((this.webView.ref.mNode.src).includes("nexusmods.com/")) {
         this.webView.currentUrl = this.webView.ref.mNode.src;
       }
       else {
