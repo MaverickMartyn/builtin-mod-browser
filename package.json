@@ -27,7 +27,7 @@
     "@types/redux-thunk": "^2.1.0",
     "babel-plugin-react-css-modules": "^5.2.6",
     "bluebird": "^3.5.5",
-    "electron": "4.2.4",
+    "electron": "13.6.6",
     "electron-devtools-installer": "^2.2.4",
     "i18next": "^17.0.4",
     "react": "^16.13.0",
