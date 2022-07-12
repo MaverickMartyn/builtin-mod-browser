@@ -1,15 +1,15 @@
 {
   "name": "builtin-mod-browser",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Adds a \"Browse\" section containing an embedded Nexus Mods browser.",
   "main": "./out/index.js",
   "repository": "https://github.com/MaverickMartyn/builtin-mod-browser",
   "scripts": {
-    "webpack": "node ./node_modules/webpack/bin/webpack --config webpack.config.js --display-error-details --progress --profile --color",
-    "bundle7z": "7z a -t7z dist/bundled/builtin-mod-browser.7z .\\dist\\index.js .\\dist\\info.json",
+    "webpack": "node ./node_modules/webpack/bin/webpack --config webpack.config.js --display-error-details --progress --profile --color ",
+    "bundle7z": "7z a -t7z builtin-mod-browser.7z .\\dist\\index.js .\\dist\\info.json",
     "build": "npm run webpack && extractInfo"
   },
-  "author": "MaverickMartyn",
+  "author": "MaverickMartyn and Bladehawke",
   "license": "GPL-3.0",
   "babel": {
     "presets": [
